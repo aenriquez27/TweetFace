@@ -38,6 +38,8 @@ gem 'simple_form', '~> 3.5', '>= 3.5.1'
 gem 'gravatar_image_tag', '~> 1.2'
 gem 'devise', '~> 4.4', '>= 4.4.1'
 
+gem 'binding_of_caller', '~> 0.7.2'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

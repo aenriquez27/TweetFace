@@ -4,7 +4,8 @@ class TweetsController < ApplicationController
   # GET /tweets
   # GET /tweets.json
   def index
-    @tweets = Tweet.all
+    @tweets = Tweet.all.order("created_at DESC")
+    @tweets = Tweet.new
   end
 
   # GET /tweets/1
@@ -14,7 +15,7 @@ class TweetsController < ApplicationController
 
   # GET /tweets/new
   def new
-    @tweet = Tweet.new
+    @tweets = Tweet.new
   end
 
   # GET /tweets/1/edit
@@ -24,10 +25,10 @@ class TweetsController < ApplicationController
   # POST /tweets
   # POST /tweets.json
   def create
-    @tweet = Tweet.new(tweet_params)
+    @tweets = Tweet.new(tweet_params)
 
     respond_to do |format|
-      if @tweet.save
+      if @tweets.save
         format.html { redirect_to @tweet, notice: 'Tweet was successfully created.' }
         format.json { render :show, status: :created, location: @tweet }
       else
@@ -41,7 +42,7 @@ class TweetsController < ApplicationController
   # PATCH/PUT /tweets/1.json
   def update
     respond_to do |format|
-      if @tweet.update(tweet_params)
+      if @tweets.update(tweet_params)
         format.html { redirect_to @tweet, notice: 'Tweet was successfully updated.' }
         format.json { render :show, status: :ok, location: @tweet }
       else
@@ -54,7 +55,7 @@ class TweetsController < ApplicationController
   # DELETE /tweets/1
   # DELETE /tweets/1.json
   def destroy
-    @tweet.destroy
+    @tweets.destroy
     respond_to do |format|
       format.html { redirect_to tweets_url, notice: 'Tweet was successfully destroyed.' }
       format.json { head :no_content }
@@ -64,7 +65,7 @@ class TweetsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_tweet
-      @tweet = Tweet.find(params[:id])
+      @tweets = Tweet.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
